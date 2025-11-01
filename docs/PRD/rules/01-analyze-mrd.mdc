@@ -1,0 +1,133 @@
+---
+alwaysApply: false
+---
+
+# MRD Analysis Rules
+
+## Purpose
+Extract and analyze key information from the Market Requirements Document to inform PRD creation.
+
+## Input
+- File: `MRD-Document.md`
+
+## Analysis Tasks
+
+### 1. Extract Core Product Information
+Identify and summarize:
+- Product name and vision
+- Target market and customer segments
+- Key business objectives
+- Market opportunity size
+
+### 2. Problem-Solution Mapping
+Create a structured mapping of:
+- Top 3-5 critical problems from MRD
+- Proposed solutions for each problem
+- Priority ranking based on business impact
+
+### 3. Competitive Landscape Summary
+Extract:
+- Main competitors and their weaknesses
+- Differentiation opportunities
+- Unique value propositions
+
+### 4. Technical Constraints Identification
+Note any mentioned:
+- Platform requirements (e.g., Cursor IDE integration)
+- Performance expectations
+- Security/compliance needs
+- Integration requirements
+
+## Output Format
+
+```markdown
+## MRD Analysis Summary
+
+### Product Overview
+- **Product Name**: [Name]
+- **Vision**: [Vision statement]
+- **Target Market**: [Primary segment]
+
+### Critical Problems (Prioritized)
+1. [Problem 1]: [Impact and solution direction]
+2. [Problem 2]: [Impact and solution direction]
+3. [Problem 3]: [Impact and solution direction]
+
+### Key Differentiators
+- [Differentiator 1]
+- [Differentiator 2]
+- [Differentiator 3]
+
+### Technical Considerations
+- [Constraint/Requirement 1]
+- [Constraint/Requirement 2]
+```
+
+## Context Variables
+- Use @MRD-Document.md to reference the source
+- Focus on actionable insights for PRD creation
+- Maintain business context throughout analysis# MRD Analysis Rules
+
+## Purpose
+Extract and analyze key information from the Market Requirements Document to inform PRD creation.
+
+## Input
+- File: `MRD-Document.md`
+
+## Analysis Tasks
+
+### 1. Extract Core Product Information
+Identify and summarize:
+- Product name and vision
+- Target market and customer segments
+- Key business objectives
+- Market opportunity size
+
+### 2. Problem-Solution Mapping
+Create a structured mapping of:
+- Top 3-5 critical problems from MRD
+- Proposed solutions for each problem
+- Priority ranking based on business impact
+
+### 3. Competitive Landscape Summary
+Extract:
+- Main competitors and their weaknesses
+- Differentiation opportunities
+- Unique value propositions
+
+### 4. Technical Constraints Identification
+Note any mentioned:
+- Platform requirements (e.g., Cursor IDE integration)
+- Performance expectations
+- Security/compliance needs
+- Integration requirements
+
+## Output Format
+
+```markdown
+## MRD Analysis Summary
+
+### Product Overview
+- **Product Name**: [Name]
+- **Vision**: [Vision statement]
+- **Target Market**: [Primary segment]
+
+### Critical Problems (Prioritized)
+1. [Problem 1]: [Impact and solution direction]
+2. [Problem 2]: [Impact and solution direction]
+3. [Problem 3]: [Impact and solution direction]
+
+### Key Differentiators
+- [Differentiator 1]
+- [Differentiator 2]
+- [Differentiator 3]
+
+### Technical Considerations
+- [Constraint/Requirement 1]
+- [Constraint/Requirement 2]
+```
+
+## Context Variables
+- Use @MRD-Document.md to reference the source
+- Focus on actionable insights for PRD creation
+- Maintain business context throughout analysis

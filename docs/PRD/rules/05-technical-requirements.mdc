@@ -1,0 +1,142 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Technical Requirements Rules
+
+## Purpose
+Define technical architecture, non-functional requirements, and implementation constraints.
+
+## Prerequisites
+- User stories defined
+- MRD technical constraints identified
+
+## Technical Specification Framework
+
+### 1. System Architecture
+
+```markdown
+## Architecture Overview
+
+### Component Architecture
+- **Frontend**: [Technology stack, frameworks]
+- **Backend**: [Services, APIs, databases]
+- **Infrastructure**: [Cloud platform, deployment model]
+- **Integrations**: [Third-party services, APIs]
+
+### Data Architecture
+- **Data Models**: [Key entities and relationships]
+- **Storage**: [Database choices and rationale]
+- **Caching**: [Strategy and tools]
+- **Security**: [Encryption, authentication]
+```
+
+### 2. Non-Functional Requirements (NFRs)
+
+Generate specific, measurable NFRs:
+
+```markdown
+## Performance Requirements
+- **Response Time**: [API calls < Xms]
+- **Throughput**: [X requests/second]
+- **Concurrent Users**: [Support X simultaneous users]
+- **Data Processing**: [Process X records in Y time]
+
+## Reliability Requirements
+- **Availability**: [99.X% uptime]
+- **Recovery Time**: [RTO < X minutes]
+- **Data Backup**: [Frequency and retention]
+- **Failover**: [Automatic/manual, time to switch]
+
+## Security Requirements
+- **Authentication**: [Method, MFA requirements]
+- **Authorization**: [Role-based access control]
+- **Data Protection**: [Encryption standards]
+- **Compliance**: [GDPR, SOC2, etc.]
+
+## Scalability Requirements
+- **Vertical Scaling**: [Resource limits]
+- **Horizontal Scaling**: [Auto-scaling triggers]
+- **Data Growth**: [Storage expansion plan]
+- **Geographic Distribution**: [Multi-region needs]
+
+## Usability Requirements
+- **Load Time**: [Page load < X seconds]
+- **Mobile Responsive**: [Device compatibility]
+- **Accessibility**: [WCAG compliance level]
+- **Browser Support**: [Minimum versions]
+```
+
+### 3. API Specifications
+
+```markdown
+## API Design
+
+### Endpoint Structure
+POST /api/v1/[resource]
+GET /api/v1/[resource]/{id}
+PUT /api/v1/[resource]/{id}
+DELETE /api/v1/[resource]/{id}
+
+### Authentication
+- Method: [OAuth2, JWT, API Key]
+- Token Lifetime: [Duration]
+- Refresh Strategy: [Process]
+
+### Rate Limiting
+- Default: [X requests per minute]
+- Burst: [Y requests allowed]
+- Premium: [Higher limits]
+
+### Error Handling
+- Format: [JSON error response structure]
+- Codes: [HTTP status codes mapping]
+- Messages: [User-friendly error messages]
+```
+
+### 4. Development Constraints
+
+```markdown
+## Constraints & Dependencies
+
+### Technical Constraints
+- [Platform-specific requirements]
+- [Performance limitations]
+- [Integration requirements]
+
+### Dependencies
+- External Services: [List with versions]
+- Libraries: [Critical dependencies]
+- APIs: [Third-party API dependencies]
+
+### Development Standards
+- Code Style: [Language-specific guides]
+- Testing: [Coverage requirements]
+- Documentation: [API docs, code comments]
+- Version Control: [Branching strategy]
+```
+
+## Output Format
+
+```markdown
+## Technical Requirements
+
+### System Architecture
+[Component and data architecture diagrams/descriptions]
+
+### Non-Functional Requirements
+[Categorized NFRs with specific metrics]
+
+### API Specifications
+[RESTful API design with examples]
+
+### Technical Constraints
+[Development constraints and dependencies]
+
+### Technology Stack
+- Frontend: [Technologies]
+- Backend: [Technologies]
+- Database: [Technologies]
+- Infrastructure: [Technologies]
+```

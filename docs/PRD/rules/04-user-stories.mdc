@@ -1,0 +1,104 @@
+---
+alwaysApply: false
+---
+# User Stories & Requirements Rules
+
+## Purpose
+Transform user research and MRD insights into actionable user stories and acceptance criteria.
+
+## Prerequisites
+- Completed user persona development
+- Identified key problems and solutions from MRD
+
+## User Story Generation Framework
+
+### 1. Epic Definition
+Group related functionality into epics:
+
+```markdown
+## Epic: [Epic Name]
+**Goal**: [What this epic achieves]
+**Personas**: [Which personas benefit]
+**Success Metrics**: [How to measure completion]
+```
+
+### 2. User Story Format
+Follow standard format with clear value proposition:
+
+```markdown
+## User Story: [Story ID]
+**As a** [persona]
+**I want to** [action/feature]
+**So that** [benefit/value]
+
+### Acceptance Criteria
+Given [initial context]
+When [action taken]
+Then [expected outcome]
+
+### Technical Notes
+- [Any technical constraints]
+- [Dependencies]
+- [Performance requirements]
+
+### Story Points
+Estimation: [1, 2, 3, 5, 8, 13]
+Priority: [P0, P1, P2, P3]
+```
+
+### 3. Story Breakdown Guidelines
+
+#### For each major feature from MRD:
+1. Create 1 epic
+2. Break into 3-7 user stories
+3. Ensure each story is:
+   - Independent
+   - Negotiable
+   - Valuable
+   - Estimable
+   - Small
+   - Testable
+
+### 4. Prioritization Matrix
+
+```markdown
+| Story ID | Business Value | Technical Effort | Risk | Priority |
+|----------|---------------|------------------|------|----------|
+| [ID]     | High/Med/Low  | 1-13 points     | H/M/L| P0-P3   |
+```
+
+## Story Generation Prompts
+
+```
+For [Feature Name]:
+1. Who is the primary user?
+2. What specific action do they need to take?
+3. What value does this deliver?
+4. What are the edge cases?
+5. How do we know it's done?
+```
+
+## Output Format
+
+```markdown
+## User Stories
+
+### Epic: [Epic Name]
+
+#### Story [ID]: [Title]
+**As a** [persona]
+**I want to** [action]
+**So that** [benefit]
+
+**Acceptance Criteria:**
+1. Given [context], When [action], Then [outcome]
+2. Given [context], When [action], Then [outcome]
+
+**Priority**: P[0-3]
+**Estimation**: [points]
+
+[Repeat for all stories]
+
+### Prioritized Backlog
+[Table of all stories ranked by priority]
+```

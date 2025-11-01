@@ -1,0 +1,176 @@
+---
+alwaysApply: false
+---
+# Success Metrics & KPIs Rules
+
+## Purpose
+Define measurable success criteria and monitoring framework for the product.
+
+## Prerequisites
+- Business objectives from MRD
+- User stories and technical requirements defined
+
+## Metrics Framework
+
+### 1. North Star Metric Definition
+
+```markdown
+## North Star Metric
+**Metric**: [Single most important metric]
+**Definition**: [Precise calculation method]
+**Current Baseline**: [If applicable]
+**Target**: [6 month, 12 month, 24 month targets]
+**Rationale**: [Why this metric matters most]
+```
+
+### 2. KPI Categories
+
+#### Business Metrics
+```markdown
+## Business KPIs
+
+### Revenue Metrics
+- **MRR/ARR**: [Monthly/Annual Recurring Revenue]
+  - Target: [Value]
+  - Measurement: [Method]
+- **ARPU**: [Average Revenue Per User]
+  - Target: [Value]
+  - Calculation: [Formula]
+- **CAC**: [Customer Acquisition Cost]
+  - Target: [Value]
+  - Components: [What's included]
+- **LTV**: [Lifetime Value]
+  - Target: [Value]
+  - Model: [Calculation approach]
+
+### Growth Metrics
+- **User Growth Rate**: [MoM, QoQ]
+- **Market Share**: [Percentage target]
+- **Expansion Revenue**: [Upsell/cross-sell]
+```
+
+#### Product Metrics
+```markdown
+## Product KPIs
+
+### Adoption Metrics
+- **Activation Rate**: [% users who complete key action]
+  - Definition: [Specific action]
+  - Target: [X%]
+  - Timeframe: [Within Y days]
+- **Feature Adoption**: [Per feature usage]
+  - Priority Features: [List]
+  - Target Adoption: [X% in Y time]
+
+### Engagement Metrics
+- **DAU/MAU**: [Daily/Monthly Active Users ratio]
+  - Target: [X%]
+  - Calculation: [Method]
+- **Session Duration**: [Average time]
+  - Target: [X minutes]
+  - Segments: [By user type]
+- **Actions per Session**: [Key actions]
+  - Target: [X actions]
+  - Actions Tracked: [List]
+
+### Retention Metrics
+- **Day 1/7/30 Retention**: [Cohort retention]
+  - Targets: [X%, Y%, Z%]
+  - Cohort Definition: [Criteria]
+- **Churn Rate**: [Monthly/Annual]
+  - Target: [<X%]
+  - Segments: [By plan/persona]
+```
+
+#### Technical Metrics
+```markdown
+## Technical KPIs
+
+### Performance Metrics
+- **API Response Time**: [p50, p95, p99]
+  - Targets: [Xms, Yms, Zms]
+  - Critical Endpoints: [List]
+- **Error Rate**: [% of requests with errors]
+  - Target: [<X%]
+  - Severity Levels: [Classification]
+- **Uptime**: [System availability]
+  - Target: [99.X%]
+  - Measurement Window: [Monthly/Quarterly]
+
+### Quality Metrics
+- **Bug Escape Rate**: [Bugs found post-release]
+  - Target: [<X per release]
+- **Test Coverage**: [Code coverage percentage]
+  - Target: [X%]
+  - Types: [Unit, Integration, E2E]
+- **Technical Debt**: [Measurement approach]
+  - Target: [<X% of velocity]
+```
+
+### 3. Success Criteria Mapping
+
+```markdown
+## Success Criteria by Timeline
+
+### Launch (Month 1)
+- [Metric 1]: [Target]
+- [Metric 2]: [Target]
+- [Metric 3]: [Target]
+
+### Growth (Months 2-6)
+- [Metric 1]: [Target]
+- [Metric 2]: [Target]
+- [Metric 3]: [Target]
+
+### Scale (Months 7-12)
+- [Metric 1]: [Target]
+- [Metric 2]: [Target]
+- [Metric 3]: [Target]
+```
+
+### 4. Monitoring & Reporting
+
+```markdown
+## Measurement Plan
+
+### Data Collection
+- **Tools**: [Analytics platforms, monitoring services]
+- **Events**: [Key events to track]
+- **Frequency**: [Real-time, daily, weekly]
+
+### Dashboards
+- **Executive Dashboard**: [High-level KPIs]
+- **Product Dashboard**: [Detailed product metrics]
+- **Technical Dashboard**: [System health metrics]
+
+### Reporting Cadence
+- **Daily**: [Operational metrics]
+- **Weekly**: [Product team review]
+- **Monthly**: [Stakeholder update]
+- **Quarterly**: [Board reporting]
+```
+
+## Output Format
+
+```markdown
+## Success Metrics Framework
+
+### North Star Metric
+[Definition and targets]
+
+### Key Performance Indicators
+#### Business KPIs
+[List with targets]
+
+#### Product KPIs
+[List with targets]
+
+#### Technical KPIs
+[List with targets]
+
+### Success Milestones
+[Timeline-based criteria]
+
+### Monitoring Plan
+[Tools and reporting structure]
+```

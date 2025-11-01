@@ -1,0 +1,126 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+# User Research & Persona Development Rules
+
+## Purpose
+Define user personas and generate user research artifacts based on market analysis.
+
+## Prerequisites
+- Completed MRD analysis
+- Target customer segments identified
+
+## User Persona Development
+
+### 1. Primary Persona Creation
+For each key user segment, create detailed personas:
+
+```markdown
+### Persona: [Name]
+**Demographics**
+- Role: [Job title]
+- Company Size: [Range]
+- Technical Proficiency: [Level]
+- Decision Making Authority: [Level]
+
+**Goals**
+1. [Primary goal]
+2. [Secondary goal]
+3. [Tertiary goal]
+
+**Pain Points**
+1. [Critical pain point]
+2. [Major frustration]
+3. [Daily challenge]
+
+**Jobs to be Done**
+- When [situation], I want to [action], so I can [outcome]
+
+**Success Metrics**
+- [How they measure success]
+```
+
+### 2. User Interview Questions Generation
+
+Generate contextual interview questions for each persona:
+
+```markdown
+## Interview Guide: [Persona Name]
+
+### Current State Questions
+1. Walk me through your typical workflow when [relevant task]
+2. What tools do you currently use for [specific activity]?
+3. What's the most frustrating part of [process]?
+
+### Problem Validation
+4. How often do you encounter [specific problem from MRD]?
+5. What's the impact when [problem] occurs?
+6. How do you currently work around [problem]?
+
+### Solution Exploration
+7. If you could wave a magic wand and fix one thing about [process], what would it be?
+8. What would need to change for you to switch from your current solution?
+9. How would you measure the success of a new [product category]?
+
+### Buying Process
+10. Who else would need to approve this purchase?
+11. What's your typical budget for [tool category]?
+12. What would prevent you from adopting a new solution?
+```
+
+### 3. User Journey Mapping
+
+Map the user journey for primary use cases:
+
+```markdown
+## User Journey: [Use Case Name]
+
+### Stages
+1. **Awareness**
+   - Trigger: [What initiates the need]
+   - Channels: [How they discover solutions]
+   - Questions: [What they're asking]
+
+2. **Consideration**
+   - Research: [How they evaluate options]
+   - Criteria: [Decision factors]
+   - Concerns: [Blockers or fears]
+
+3. **Decision**
+   - Process: [Steps to purchase]
+   - Stakeholders: [Who's involved]
+   - Timeline: [Typical duration]
+
+4. **Onboarding**
+   - First Use: [Initial experience needs]
+   - Success Metrics: [Early indicators]
+   - Support Needs: [Help required]
+
+5. **Retention**
+   - Ongoing Value: [Continued benefits]
+   - Expansion: [Growth opportunities]
+   - Advocacy: [Referral triggers]
+```
+
+## Output Format
+
+```markdown
+## User Research Summary
+
+### Primary Personas
+[2-3 detailed personas]
+
+### Key Insights
+1. [Critical insight about users]
+2. [Important behavioral pattern]
+3. [Unmet need discovery]
+
+### Interview Questions
+[10-15 validated questions]
+
+### User Journey Maps
+[2-3 primary journeys]
+```
