@@ -44,11 +44,12 @@ export function CartIcon() {
   return (
     <Link
       href="/cart"
-      className="relative inline-flex items-center justify-center p-2 hover:bg-muted rounded-md transition-colors"
+      className="relative inline-flex items-center justify-center p-2 hover:opacity-70 transition-opacity"
+      aria-label="장바구니"
     >
-      <ShoppingCart className="w-6 h-6" />
+      <ShoppingCart className="w-5 h-5" strokeWidth={1.5} />
       {isSignedIn && count > 0 && (
-        <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-primary rounded-full">
+        <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-light text-white bg-black rounded-full px-1.5">
           {count > 99 ? "99+" : count}
         </span>
       )}

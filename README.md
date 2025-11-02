@@ -24,8 +24,9 @@
 2. [기술 스택](#기술-스택)
 3. [주요 기능](#주요-기능)
 4. [시작하기](#시작하기)
-5. [추가 설정 및 팁](#추가-설정-및-팁)
-6. [프로젝트 구조](#프로젝트-구조)
+5. [배포하기](#배포하기)
+6. [추가 설정 및 팁](#추가-설정-및-팁)
+7. [프로젝트 구조](#프로젝트-구조)
 
 ## 소개
 
@@ -302,6 +303,68 @@ pnpm start
 pnpm lint
 ```
 
+## 배포하기
+
+### Vercel 배포 (권장)
+
+이 프로젝트는 Vercel에 최적화되어 있습니다. 자세한 배포 가이드는 [배포 문서](./docs/DEPLOYMENT.md)를 참조하세요.
+
+#### 빠른 배포 절차
+
+1. **GitHub에 코드 푸시**
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
+
+2. **Vercel 프로젝트 생성**
+   - [Vercel Dashboard](https://vercel.com/dashboard)에서 새 프로젝트 생성
+   - GitHub 저장소 연결
+
+3. **환경변수 설정**
+
+   Vercel Dashboard → 프로젝트 → Settings → Environment Variables에서 다음 환경변수를 추가:
+
+   **Clerk 환경변수:**
+   ```
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+   CLERK_SECRET_KEY=sk_test_...
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+   NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+   ```
+
+   **Supabase 환경변수:**
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   NEXT_PUBLIC_STORAGE_BUCKET=uploads
+   ```
+
+   **Toss Payments 환경변수:**
+   ```
+   NEXT_PUBLIC_TOSS_PAYMENTS_CLIENT_KEY=test_ck_...
+   TOSS_PAYMENTS_SECRET_KEY=test_sk_...
+   ```
+
+   ⚠️ **중요**: 모든 환경변수를 **모든 환경**(Production, Preview, Development)에 적용하세요.
+
+4. **배포 실행**
+   - Vercel이 자동으로 빌드 및 배포를 시작합니다
+   - 배포 완료 후 제공된 URL로 접속하여 확인
+
+#### 배포 후 확인 사항
+
+- [ ] 홈페이지가 정상 로딩됨
+- [ ] 회원가입/로그인 기능이 작동함
+- [ ] 상품 목록이 정상 표시됨
+- [ ] 장바구니 기능이 작동함
+- [ ] 주문 및 결제 플로우가 정상 작동함
+
+자세한 배포 가이드 및 문제 해결 방법은 [배포 문서](./docs/DEPLOYMENT.md)를 참조하세요.
+
 ## 추가 설정 및 팁
 
 ### Clerk 한국어 설정
@@ -408,5 +471,6 @@ saas-template/
 - [Supabase 문서](https://supabase.com/docs)
 - [shadcn/ui 문서](https://ui.shadcn.com/)
 - [Tailwind CSS v4 문서](https://tailwindcss.com/docs)
-#   m y - s h o p p i n g m a l l  
+#   m y - s h o p p i n g m a l l 
+ 
  

@@ -2,13 +2,11 @@
  * @file app/page.tsx
  * @description 홈 페이지
  *
- * 쇼핑몰 홈페이지 - 카테고리, 기획 상품, 최신 상품, 인기상품, 디자인 콜라보 섹션을 표시합니다.
+ * 쇼핑몰 홈페이지 - 기획 상품, 최신 상품, 인기상품, 디자인 콜라보 섹션을 표시합니다.
  */
 
 import { ProductCard } from "@/components/product-card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { getCategories } from "@/lib/home/get-categories";
+import { BrandBannerSlider } from "@/components/home/brand-banner-slider";
 import { getPromotionalProducts } from "@/lib/home/get-promotional-products";
 import { getLatestProducts } from "@/lib/home/get-latest-products";
 import { getPopularProducts } from "@/lib/home/get-popular-products";
@@ -19,9 +17,8 @@ export default async function Home() {
   logger.debug("홈페이지 컴포넌트 렌더링 시작");
 
   // 병렬로 모든 데이터 조회
-  const [categories, promotionalProducts, latestProducts, popularProducts, collaborationProducts] =
+  const [promotionalProducts, latestProducts, popularProducts, collaborationProducts] =
     await Promise.all([
-      getCategories(),
       getPromotionalProducts(),
       getLatestProducts(),
       getPopularProducts(),
@@ -29,61 +26,39 @@ export default async function Home() {
     ]);
 
   logger.info("모든 데이터 조회 완료", {
-    categories: categories.length,
     promotionalProducts: promotionalProducts.length,
     latestProducts: latestProducts.length,
     popularProducts: popularProducts.length,
     collaborationProducts: collaborationProducts.length,
   });
 
-  return (
-    <main className="min-h-[calc(100vh-80px)] px-4 py-8 lg:px-8 lg:py-16">
-      <div className="mx-auto max-w-7xl">
-        {/* 헤더 섹션 */}
-        <section className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold lg:text-5xl">
-            쇼핑몰에 오신 것을 환영합니다
-          </h1>
-          <p className="text-lg text-muted-foreground lg:text-xl">
-            최신 상품을 확인하고 쇼핑을 시작하세요
-          </p>
-        </section>
+  // 브랜드 배너 슬라이드 데이터 (예시 - 실제로는 데이터베이스나 설정에서 가져와야 함)
+  const brandBannerSlides = [
+    {
+      id: "ashley-williams",
+      imageUrl: "/1.jpg",
+      imageLink: "/products?category=collaboration",
+      brandName: "ASHLEY WILLIAMS",
+      description: `런던 기반 디자이너 애슐리 윌리엄스가 이끄는 브랜드 ASHLEY WILLIAMS.<br>펑크와 키치, 유머러스한 감성을 결합해 90년대 하위문화와 여성의 개성을 자유롭게 재해석합니다.<br>시그니처 모티프와 대담한 그래픽, 그리고 예측 불가능한 위트를 통해 독창적인 '런던 걸' 무드를 완성합니다.`,
+      products: collaborationProducts.slice(0, 3),
+    },
+  ];
 
-        {/* 카테고리 진입 섹션 */}
-        {categories.length > 0 && (
-          <section className="mb-12">
-            <h2 className="mb-6 text-2xl font-semibold">카테고리</h2>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-              {categories.map((categoryInfo) => (
-                <Link
-                  key={categoryInfo.category}
-                  href={`/products?category=${encodeURIComponent(categoryInfo.category)}`}
-                >
-                  <Button
-                    variant="outline"
-                    className="h-auto flex-col gap-2 py-4 transition-all hover:bg-primary hover:text-primary-foreground"
-                  >
-                    <span className="text-base font-semibold">
-                      {categoryInfo.label}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {categoryInfo.count}개
-                    </span>
-                  </Button>
-                </Link>
-              ))}
-            </div>
-          </section>
+  return (
+    <main className="min-h-screen">
+      <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8 lg:py-20">
+        {/* 브랜드 배너 슬라이더 */}
+        {brandBannerSlides.length > 0 && (
+          <BrandBannerSlider slides={brandBannerSlides} />
         )}
 
         {/* 기획 상품 섹션 */}
         {promotionalProducts.length > 0 && (
-          <section className="mb-12">
-            <h2 className="mb-6 text-2xl font-semibold">
-              기획 상품{" "}
-              <span className="text-sm text-muted-foreground">PROMOTION</span>
+          <section className="mb-16 lg:mb-24">
+            <h2 className="mb-8 text-xs font-light tracking-[0.2em] uppercase text-muted-foreground">
+              Promotion
             </h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {promotionalProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -92,17 +67,19 @@ export default async function Home() {
         )}
 
         {/* 최신 상품 섹션 */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-2xl font-semibold">최신 상품</h2>
+        <section className="mb-16 lg:mb-24">
+          <h2 className="mb-8 text-xs font-light tracking-[0.2em] uppercase text-muted-foreground">
+            New Arrivals
+          </h2>
 
           {latestProducts.length === 0 ? (
-            <div className="rounded-lg border border-dashed p-12 text-center">
-              <p className="text-muted-foreground">
+            <div className="border-t border-border pt-12 text-center">
+              <p className="text-sm text-muted-foreground font-light">
                 등록된 상품이 없습니다.
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {latestProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -112,11 +89,11 @@ export default async function Home() {
 
         {/* 인기상품 섹션 */}
         {popularProducts.length > 0 && (
-          <section className="mb-12">
-            <h2 className="mb-6 text-2xl font-semibold">
-              인기 상품 <span className="text-sm text-muted-foreground">BEST</span>
+          <section className="mb-16 lg:mb-24">
+            <h2 className="mb-8 text-xs font-light tracking-[0.2em] uppercase text-muted-foreground">
+              Best Sellers
             </h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {popularProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -126,16 +103,15 @@ export default async function Home() {
 
         {/* 디자인 콜라보 섹션 */}
         {collaborationProducts.length > 0 && (
-          <section className="mb-12">
-            <h2 className="mb-6 text-2xl font-semibold">
-              디자인 콜라보{" "}
-              <span className="text-sm text-muted-foreground">COLLABORATION</span>
+          <section className="mb-16 lg:mb-24">
+            <h2 className="mb-8 text-xs font-light tracking-[0.2em] uppercase text-muted-foreground">
+              Collaboration
             </h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {collaborationProducts.map((product) => (
                 <div key={product.id} className="relative">
                   <ProductCard product={product} />
-                  <span className="absolute right-2 top-2 z-10 rounded-md bg-primary px-2 py-1 text-xs font-semibold text-primary-foreground">
+                  <span className="absolute left-3 top-3 z-10 bg-black/70 text-white px-2 py-1 text-xs font-light tracking-wide uppercase">
                     콜라보
                   </span>
                 </div>

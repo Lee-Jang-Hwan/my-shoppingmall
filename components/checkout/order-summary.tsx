@@ -12,14 +12,12 @@
  *
  * @dependencies
  * - types/cart.ts: CartItemWithProduct 타입
- * - actions/order.ts: calculateShippingFee 함수
  */
 
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
-import { calculateShippingFee } from "@/actions/order";
 import type { CartItemWithProduct } from "@/types/cart";
 
 interface OrderSummaryProps {
@@ -33,14 +31,22 @@ function formatPrice(price: number): string {
   return new Intl.NumberFormat("ko-KR").format(price);
 }
 
+/**
+ * 배송비 계산 (클라이언트 사이드)
+ * 5만원 이상 무료 배송, 미만 3천원
+ */
+function calculateShippingFeeClient(totalAmount: number): number {
+  return totalAmount >= 50000 ? 0 : 3000;
+}
+
 export function OrderSummary({ items }: OrderSummaryProps) {
   // 상품 금액 합계 계산
   const totalAmount = items.reduce((sum, item) => {
     return sum + item.product.price * item.quantity;
   }, 0);
 
-  // 배송비 계산
-  const shippingFee = calculateShippingFee(totalAmount);
+  // 배송비 계산 (클라이언트 사이드에서 직접 계산)
+  const shippingFee = calculateShippingFeeClient(totalAmount);
 
   // 최종 결제 금액
   const finalTotalAmount = totalAmount + shippingFee;
@@ -58,9 +64,9 @@ export function OrderSummary({ items }: OrderSummaryProps) {
           const { product } = item;
           const itemTotal = product.price * item.quantity;
           const productImageUrl =
-            product.image_urls && product.image_urls.length > 0
+            (product.image_urls && product.image_urls.length > 0
               ? product.image_urls[0]
-              : product.image_url;
+              : product.image_url) || "https://via.placeholder.com/200x200?text=No+Image";
 
           return (
             <div
@@ -72,20 +78,12 @@ export function OrderSummary({ items }: OrderSummaryProps) {
                 href={`/products/${product.id}`}
                 className="flex-shrink-0 w-24 h-24 relative overflow-hidden rounded-md border border-border"
               >
-                {productImageUrl ? (
-                  <Image
-                    src={productImageUrl}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-muted flex items-center justify-center">
-                    <span className="text-xs text-muted-foreground">
-                      이미지 없음
-                    </span>
-                  </div>
-                )}
+                <Image
+                  src={productImageUrl}
+                  alt={product.name}
+                  fill
+                  className="object-cover"
+                />
               </Link>
 
               {/* 상품 정보 */}

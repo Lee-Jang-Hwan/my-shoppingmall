@@ -126,7 +126,13 @@ export function ProductForm({ product }: ProductFormProps) {
           });
         } else {
           await createProduct({
-            ...data,
+            name: data.name,
+            price: data.price,
+            stock_quantity: data.stock_quantity,
+            description: data.description ?? null,
+            category: data.category ?? null,
+            is_promotional: data.is_promotional ?? false,
+            status: data.status ?? "active",
             image_urls: imageUrls.length > 0 ? imageUrls : null,
             options: Object.keys(options).length > 0 ? options : null,
           });

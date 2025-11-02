@@ -13,6 +13,7 @@ export type SupabaseClient = ReturnType<typeof createClerkSupabaseClient>;
 
 /**
  * 테이블 존재 여부를 확인하는 함수
+ * 실제 쿼리를 시도해서 테이블 접근 가능 여부를 확인
  * 
  * @param supabase - Supabase 클라이언트
  * @param tableName - 확인할 테이블 이름
@@ -23,24 +24,46 @@ export async function checkTableExists(
   tableName: string
 ): Promise<boolean> {
   try {
-    const { data, error } = await supabase
-      .from("information_schema.tables")
-      .select("table_name")
-      .eq("table_schema", "public")
-      .eq("table_name", tableName)
+    // 실제 쿼리를 시도해서 테이블 접근 가능 여부 확인
+    const { error } = await supabase
+      .from(tableName)
+      .select("id")
       .limit(1);
 
+    // 테이블이 존재하면 에러가 없거나, 존재하지 않으면 에러 발생
     if (error) {
-      logger.warn(`테이블 존재 확인 실패 (${tableName})`, { error: error.message });
-      return false;
+      // PGRST116: 테이블이 존재하지 않음
+      // 42P01: relation does not exist (PostgreSQL 에러 코드)
+      if (
+        error.code === "PGRST116" ||
+        error.code === "42P01" ||
+        (error.message?.includes("does not exist") && error.message?.includes("relation")) ||
+        error.message?.includes("does not exist")
+      ) {
+        logger.warn(`테이블이 존재하지 않습니다 (${tableName})`, { 
+          error: error.message,
+          code: error.code 
+        });
+        return false;
+      }
+      // 다른 에러(권한 문제, RLS 정책 등)는 테이블이 존재하는 것으로 간주
+      // 데이터가 없어도 테이블은 존재하는 것으로 간주
+      logger.debug(`테이블 접근 시도 (${tableName})`, { 
+        error: error.message,
+        code: error.code,
+        hint: "테이블은 존재하지만 접근에 문제가 있을 수 있습니다"
+      });
+      return true; // 테이블은 존재하는 것으로 간주
     }
 
-    return (data?.length ?? 0) > 0;
+    // 에러가 없으면 테이블 존재
+    return true;
   } catch (error) {
-    logger.error(`테이블 존재 확인 중 예외 발생 (${tableName})`, {
+    // 예외 발생 시에도 테이블이 존재하는 것으로 간주 (권한 문제일 수 있음)
+    logger.debug(`테이블 존재 확인 중 예외 발생 (${tableName})`, {
       error: error instanceof Error ? error.message : String(error),
     });
-    return false;
+    return true; // 예외 발생 시에도 true 반환 (테이블은 존재하지만 접근 문제일 수 있음)
   }
 }
 

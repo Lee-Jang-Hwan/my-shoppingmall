@@ -52,11 +52,11 @@ export function CartItemList({
   // 전체 선택/해제
   const toggleSelectAll = () => {
     if (selectedIds.size === items.length) {
-      const newSet = new Set();
+      const newSet = new Set<string>();
       setSelectedIds(newSet);
       updateSelectedIds(newSet);
     } else {
-      const newSet = new Set(items.map((item) => item.id));
+      const newSet = new Set<string>(items.map((item) => item.id));
       setSelectedIds(newSet);
       updateSelectedIds(newSet);
     }
@@ -81,7 +81,7 @@ export function CartItemList({
         await removeCartItems(Array.from(selectedIds));
         // 삭제된 항목을 목록에서 제거
         setItems((prev) => prev.filter((item) => !selectedIds.has(item.id)));
-        const newSet = new Set();
+        const newSet = new Set<string>();
         setSelectedIds(newSet);
         updateSelectedIds(newSet);
       } catch (error) {

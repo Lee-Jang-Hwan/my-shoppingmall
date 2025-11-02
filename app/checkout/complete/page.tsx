@@ -20,7 +20,6 @@ import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { getOrder } from "@/actions/order";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CheckoutCompleteClient } from "@/components/checkout/checkout-complete-client";
 import type { OrderWithItems } from "@/types/order";
@@ -28,8 +27,6 @@ import type { OrderWithItems } from "@/types/order";
 interface CheckoutCompletePageProps {
   searchParams: Promise<{
     orderId?: string;
-    payment?: string;
-    paymentKey?: string;
   }>;
 }
 

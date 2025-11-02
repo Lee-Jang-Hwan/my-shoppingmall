@@ -7,7 +7,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ShippingForm } from "@/components/checkout/shipping-form";
 import type { ShippingFormData } from "@/types/order";
 
@@ -18,18 +18,27 @@ interface CheckoutClientProps {
 export function CheckoutClient({ onSubmit }: CheckoutClientProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const isSubmittingRef = useRef(false);
 
   const handleSubmit = async (data: ShippingFormData) => {
+    // 중복 클릭 방지
+    if (isSubmittingRef.current || isLoading) {
+      return;
+    }
+
+    isSubmittingRef.current = true;
     setIsLoading(true);
     setError(null);
 
     try {
       await onSubmit(data);
+      // 성공 시 리다이렉트되므로 여기서 상태를 초기화하지 않음
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "주문 생성에 실패했습니다. 다시 시도해주세요.";
       setError(errorMessage);
       setIsLoading(false);
+      isSubmittingRef.current = false;
     }
   };
 

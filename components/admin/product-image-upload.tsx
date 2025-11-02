@@ -236,7 +236,7 @@ export function ProductImageUpload({
             아직 업로드된 이미지가 없습니다.
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
-            위의 "이미지 추가" 버튼을 클릭하여 이미지를 업로드하세요.
+            위의 &quot;이미지 추가&quot; 버튼을 클릭하여 이미지를 업로드하세요.
           </p>
         </div>
       )}

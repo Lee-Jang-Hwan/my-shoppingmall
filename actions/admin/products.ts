@@ -39,6 +39,7 @@ export interface CreateProductData {
   is_promotional?: boolean;
   options?: Record<string, unknown> | null;
   status?: "active" | "out_of_stock" | "hidden";
+  is_active?: boolean;
 }
 
 /**
@@ -147,14 +148,16 @@ export async function updateProduct(
   }
 
   // status가 변경되면 is_active도 업데이트
+  // updateData에 is_active 속성을 안전하게 추가하기 위해 별도 객체 생성
+  const updatePayload: Record<string, unknown> = { ...updateData };
   if (updateData.status !== undefined) {
-    updateData.is_active = updateData.status !== "hidden";
+    updatePayload.is_active = updateData.status !== "hidden";
   }
 
   // 상품 수정
   const { data: product, error } = await supabase
     .from("products")
-    .update(updateData)
+    .update(updatePayload)
     .eq("id", id)
     .select()
     .single();

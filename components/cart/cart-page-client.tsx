@@ -8,6 +8,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { CartItemList } from "@/components/cart/cart-item-list";
 import { CheckoutButton } from "@/components/cart/checkout-button";
 import type { CartItemWithProduct } from "@/types/cart";
@@ -38,12 +39,12 @@ export function CartPageClient({
           </span>
         </div>
         <div className="flex gap-3">
-          <a
+          <Link
             href="/products"
             className="flex-1 px-4 py-3 text-center border border-border rounded-md hover:bg-muted"
           >
             쇼핑 계속하기
-          </a>
+          </Link>
           <CheckoutButton selectedIds={selectedIds} />
         </div>
       </div>

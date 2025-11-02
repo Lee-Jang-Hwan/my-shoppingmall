@@ -4,6 +4,7 @@ import { koKR } from "@clerk/localizations";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import Navbar from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { SyncUserProvider } from "@/components/providers/sync-user-provider";
 import "./globals.css";
 
@@ -18,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SaaS 템플릿",
+  title: "N.Code.Flow",
   description: "Next.js + Clerk + Supabase 보일러플레이트",
 };
 
@@ -44,13 +45,13 @@ export default function RootLayout({
           "1. Go to Vercel Dashboard → Settings → Environment Variables\n" +
           "2. Add NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY\n" +
           "3. Select all environments (Production, Preview, Development)\n" +
-          "4. Redeploy after adding"
+          "4. Redeploy after adding",
       );
     }
     // 프로덕션/빌드 환경에서는 간단한 메시지
     throw new Error(
       "Missing NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY. " +
-        "Please set it in Vercel Dashboard → Settings → Environment Variables and redeploy."
+        "Please set it in Vercel Dashboard → Settings → Environment Variables and redeploy.",
     );
   }
 
@@ -63,6 +64,7 @@ export default function RootLayout({
           <SyncUserProvider>
             <Navbar />
             {children}
+            <Footer />
           </SyncUserProvider>
         </body>
       </html>

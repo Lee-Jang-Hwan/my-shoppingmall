@@ -18,6 +18,8 @@ export function getCategoryLabel(category: string | null): string {
     beauty: "뷰티",
     home: "생활/가정",
     collaboration: "디자인 콜라보",
+    woman: "여성",
+    man: "남성",
   };
 
   return category ? categoryMap[category] || category : "기타";

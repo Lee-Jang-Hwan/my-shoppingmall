@@ -31,7 +31,6 @@ import { formatOrderDate, formatPrice } from "@/utils/order";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import type { OrderWithItems } from "@/types/order";
-import { calculateShippingFee } from "@/actions/order";
 import { OrderCancelButton } from "@/components/my/order-cancel-button";
 
 interface OrderDetailPageProps {

@@ -39,8 +39,21 @@ import type { CartItemWithProduct } from "@/types/cart";
  * @param totalAmount - 상품 금액 합계
  * @returns 배송비
  */
-export function calculateShippingFee(totalAmount: number): number {
-  return totalAmount >= 50000 ? 0 : 3000;
+export async function calculateShippingFee(totalAmount: number): Promise<number> {
+  console.group("🚚 [calculateShippingFee] 배송비 계산 시작");
+  console.log("상품 금액 합계:", totalAmount);
+  
+  const shippingFee = totalAmount >= 50000 ? 0 : 3000;
+  const isFreeShipping = totalAmount >= 50000;
+  
+  console.log("배송비 계산 결과:", {
+    상품금액합계: totalAmount,
+    배송비: shippingFee,
+    무료배송여부: isFreeShipping ? "무료배송" : "배송비 3,000원",
+  });
+  console.groupEnd();
+  
+  return shippingFee;
 }
 
 /**
@@ -148,7 +161,7 @@ export async function createOrder(
   }
 
   // 4. 배송비 계산
-  const shippingFee = calculateShippingFee(totalAmount);
+  const shippingFee = await calculateShippingFee(totalAmount);
   const finalTotalAmount = totalAmount + shippingFee;
 
   console.log("💰 금액 계산:", {

@@ -139,20 +139,13 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         {/* 상품 이미지 */}
         <div className="relative aspect-square bg-muted rounded-lg overflow-hidden">
-          {product.image_url ? (
-            <Image
-              src={product.image_url}
-              alt={product.name}
-              fill
-              className="object-cover"
-              priority
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
-              <Package className="w-24 h-24 opacity-50" />
-              <span className="sr-only">이미지 없음</span>
-            </div>
-          )}
+          <Image
+            src={product.image_urls?.[0] || product.image_url || "https://via.placeholder.com/800x800?text=No+Image"}
+            alt={product.name}
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
 
         {/* 상품 기본 정보 */}

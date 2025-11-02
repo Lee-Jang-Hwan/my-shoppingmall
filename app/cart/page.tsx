@@ -23,11 +23,10 @@
  */
 
 import { getCartItems } from "@/actions/cart";
-import { CartItemList } from "@/components/cart/cart-item-list";
-import { CheckoutButton } from "@/components/cart/checkout-button";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { CartPageClient } from "@/components/cart/cart-page-client";
+import Link from "next/link";
 
 /**
  * 가격을 천단위 콤마로 포맷팅
@@ -90,12 +89,12 @@ export default async function CartPage() {
           <p className="text-muted-foreground mb-6">
             상품을 추가해보세요!
           </p>
-          <a
+          <Link
             href="/products"
             className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
           >
             쇼핑 계속하기
-          </a>
+          </Link>
         </div>
       ) : (
         // 장바구니 목록

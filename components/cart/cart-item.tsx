@@ -133,11 +133,11 @@ export function CartItem({
     });
   };
 
-  // 상품 이미지 URL (다중 이미지 우선, 단일 이미지 대체)
+  // 상품 이미지 URL (다중 이미지 우선, 단일 이미지 대체, placeholder)
   const productImageUrl =
-    product.image_urls && product.image_urls.length > 0
+    (product.image_urls && product.image_urls.length > 0
       ? product.image_urls[0]
-      : product.image_url;
+      : product.image_url) || "https://via.placeholder.com/200x200?text=No+Image";
 
   return (
     <div className="flex gap-4 p-4 border border-border rounded-lg">
@@ -155,18 +155,12 @@ export function CartItem({
         href={`/products/${product.id}`}
         className="flex-shrink-0 w-24 h-24 relative overflow-hidden rounded-md border border-border"
       >
-        {productImageUrl ? (
-          <Image
-            src={productImageUrl}
-            alt={product.name}
-            fill
-            className="object-cover"
-          />
-        ) : (
-          <div className="w-full h-full bg-muted flex items-center justify-center">
-            <span className="text-xs text-muted-foreground">이미지 없음</span>
-          </div>
-        )}
+        <Image
+          src={productImageUrl}
+          alt={product.name}
+          fill
+          className="object-cover"
+        />
       </Link>
 
       {/* 상품 정보 */}
