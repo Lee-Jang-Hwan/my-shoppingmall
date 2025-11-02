@@ -27,12 +27,10 @@
 import { createClerkSupabaseClient } from "@/lib/supabase/server";
 import { Product } from "@/types/product";
 import { getCategoryLabel } from "@/lib/categories";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { ProductPurchaseActions } from "@/components/product-purchase-actions";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ShoppingCart, CreditCard, Package, Truck, RotateCcw } from "lucide-react";
+import { Package, Truck, RotateCcw } from "lucide-react";
 
 /**
  * 페이지 Props 타입
@@ -198,45 +196,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           {/* 구분선 */}
           <div className="border-t border-border" />
 
-          {/* 수량 선택 */}
-          <div className="space-y-2">
-            <Label htmlFor="quantity">수량</Label>
-            <div className="flex items-center gap-4">
-              <Input
-                id="quantity"
-                type="number"
-                min="1"
-                max={product.stock_quantity}
-                defaultValue="1"
-                disabled={isOutOfStock}
-                className="w-24"
-              />
-              <span className="text-sm text-muted-foreground">
-                (최대 {product.stock_quantity}개)
-              </span>
-            </div>
-          </div>
-
-          {/* 구매 버튼 */}
-          <div className="flex gap-3 pt-4">
-            <Button
-              size="lg"
-              variant="outline"
-              disabled={isOutOfStock}
-              className="flex-1"
-            >
-              <ShoppingCart className="w-5 h-5 mr-2" />
-              장바구니 추가
-            </Button>
-            <Button
-              size="lg"
-              disabled={isOutOfStock}
-              className="flex-1"
-            >
-              <CreditCard className="w-5 h-5 mr-2" />
-              즉시 구매
-            </Button>
-          </div>
+          {/* 구매 액션 (수량 선택 및 장바구니 추가) */}
+          <ProductPurchaseActions product={product} />
 
           {/* 배송 정보 (간단 버전) */}
           <div className="pt-4 border-t border-border">
