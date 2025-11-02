@@ -22,11 +22,14 @@ import { getOrder } from "@/actions/order";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { CheckoutCompleteClient } from "@/components/checkout/checkout-complete-client";
 import type { OrderWithItems } from "@/types/order";
 
 interface CheckoutCompletePageProps {
   searchParams: Promise<{
     orderId?: string;
+    payment?: string;
+    paymentKey?: string;
   }>;
 }
 
@@ -89,6 +92,9 @@ export default async function CheckoutCompletePage({
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
+      {/* 결제위젯 및 결제 상태 (클라이언트 컴포넌트) */}
+      <CheckoutCompleteClient order={order} />
+
       {/* 주문 완료 메시지 */}
       <div className="text-center mb-8">
         <div className="mb-4">
