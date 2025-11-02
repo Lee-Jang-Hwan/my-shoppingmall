@@ -24,6 +24,7 @@ function formatPrice(price: number): string {
 
 export function ProductCard({ product, className }: ProductCardProps) {
   const isOutOfStock = product.stock_quantity === 0;
+  const isPromotional = product.is_promotional ?? false;
   const priceFormatted = formatPrice(product.price);
   const categoryLabel = getCategoryLabel(product.category);
 
@@ -33,11 +34,19 @@ export function ProductCard({ product, className }: ProductCardProps) {
       className={cn(
         "group relative block rounded-lg border bg-card p-4 shadow-sm transition-all hover:shadow-md hover:border-primary/50",
         isOutOfStock && "opacity-60",
+        isPromotional && "border-primary/30 bg-primary/5",
         className
       )}
     >
+      {/* 프로모션 배지 (최우선 표시) */}
+      {isPromotional && (
+        <span className="absolute left-2 top-2 z-10 rounded-md bg-primary px-2 py-1 text-xs font-semibold text-primary-foreground">
+          특가
+        </span>
+      )}
+
       {/* 품절 배지 */}
-      {isOutOfStock && (
+      {isOutOfStock && !isPromotional && (
         <span className="absolute right-2 top-2 rounded-md bg-destructive/90 px-2 py-1 text-xs font-semibold text-white">
           품절
         </span>
@@ -65,7 +74,10 @@ export function ProductCard({ product, className }: ProductCardProps) {
       {/* 가격 및 재고 정보 */}
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-lg font-bold text-foreground">
+          <p className={cn(
+            "text-lg font-bold",
+            isPromotional ? "text-primary" : "text-foreground"
+          )}>
             {priceFormatted}원
           </p>
           {!isOutOfStock && (

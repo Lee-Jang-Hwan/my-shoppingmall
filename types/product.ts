@@ -20,6 +20,10 @@ export interface Product {
   image_urls: string[] | null; // 상품 이미지 URL 배열 (다중 이미지 지원)
   view_count: number; // 조회수 (인기상품 추천에 사용)
   is_promotional: boolean; // 프로모션/특가 상품 여부
+  original_price: number | null; // 원가 (할인율 계산용, 프로모션 상품인 경우 할인 전 가격)
+  discount_percentage: number | null; // 할인율 (0-100%, 원가 대비 할인 비율)
+  promotion_start_date: string | null; // 프로모션 시작일시 (ISO 8601 timestamp)
+  promotion_end_date: string | null; // 프로모션 종료일시 (ISO 8601 timestamp)
   options: Record<string, unknown> | null; // 상품 옵션 (사이즈, 색상 등) - JSONB
   status: "active" | "out_of_stock" | "hidden"; // 상품 상태
   created_at: string; // ISO 8601 timestamp
