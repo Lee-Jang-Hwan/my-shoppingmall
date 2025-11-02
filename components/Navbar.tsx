@@ -20,6 +20,9 @@ const Navbar = () => {
           </SignInButton>
         </SignedOut>
         <SignedIn>
+          <Link href="/my/orders">
+            <Button variant="ghost">주문 내역</Button>
+          </Link>
           <UserButton />
         </SignedIn>
       </div>

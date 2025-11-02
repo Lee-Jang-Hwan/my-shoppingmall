@@ -294,8 +294,8 @@ export default async function CheckoutCompletePage({
           </Button>
         </Link>
         <Link href="/my/orders" className="flex-1">
-          <Button className="w-full" disabled>
-            주문 내역 보기 (Phase 5에서 구현)
+          <Button className="w-full">
+            주문 내역 보기
           </Button>
         </Link>
       </div>
