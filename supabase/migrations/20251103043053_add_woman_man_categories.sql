@@ -44,3 +44,4 @@ CHECK (
 COMMENT ON CONSTRAINT products_category_check ON products IS 
 '허용된 카테고리만 입력 가능 (woman: 여성, man: 남성 포함)';
 
+

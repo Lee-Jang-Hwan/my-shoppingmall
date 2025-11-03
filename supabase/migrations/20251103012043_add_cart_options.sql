@@ -33,3 +33,4 @@ BEGIN
   RAISE NOTICE '✅ cart_items 테이블에 options 필드 추가 및 UNIQUE 제약 수정 완료';
 END $$;
 
+

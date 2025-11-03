@@ -1013,3 +1013,4 @@ SELECT * FROM order_items WHERE order_id = 'order_id';
 - 화면 크기: _______________
 - 네트워크: _______________
 
+
