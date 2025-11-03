@@ -7,6 +7,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { SignedIn } from "@clerk/nextjs";
 import { Product } from "@/types/product";
 import { cn } from "@/lib/utils";
 import { Package } from "lucide-react";
@@ -68,9 +69,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
       {/* 상품 정보 */}
       <div className="pt-4 space-y-1 text-center">
         {/* 상품명 */}
-        <h3 className="text-sm font-bold text-foreground line-clamp-2 tracking-wide">
-          {product.name}
-        </h3>
+        <SignedIn>
+          <h3 className="text-sm font-bold text-foreground line-clamp-2 tracking-wide">
+            {product.name}
+          </h3>
+        </SignedIn>
 
         {/* 상품 설명 */}
         {product.description && (

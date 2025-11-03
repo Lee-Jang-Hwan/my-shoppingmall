@@ -41,6 +41,11 @@ export function CartIcon() {
     return () => clearInterval(interval);
   }, [isSignedIn]);
 
+  // 로그인하지 않은 사용자에게는 장바구니 아이콘을 표시하지 않음
+  if (!isSignedIn) {
+    return null;
+  }
+
   return (
     <Link
       href="/cart"
@@ -48,7 +53,7 @@ export function CartIcon() {
       aria-label="장바구니"
     >
       <ShoppingCart className="w-5 h-5" strokeWidth={1.5} />
-      {isSignedIn && count > 0 && (
+      {count > 0 && (
         <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-light text-white bg-black rounded-full px-1.5">
           {count > 99 ? "99+" : count}
         </span>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { CartIcon } from "@/components/cart-icon";
+import { Truck } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -26,10 +27,12 @@ const Navbar = () => {
             </SignInButton>
           </SignedOut>
           <SignedIn>
-            <Link href="/my/orders">
-              <Button variant="ghost" size="sm" className="hidden sm:flex text-sm font-light">
-                주문 내역
-              </Button>
+            <Link
+              href="/my/orders"
+              className="relative inline-flex items-center justify-center p-2 hover:opacity-70 transition-opacity"
+              aria-label="주문 내역"
+            >
+              <Truck className="w-5 h-5" strokeWidth={1.5} />
             </Link>
             <UserButton />
           </SignedIn>
